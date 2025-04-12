@@ -41,8 +41,11 @@ Take a number and print a pattern. See the input and output pair given below:
 
 **Output**
 `0`
+
 `10`
+
 `010`
+
 `1010`
 
 **Input**
@@ -50,9 +53,13 @@ Take a number and print a pattern. See the input and output pair given below:
 
 **Output**
 `1`
+
 `01`
+
 `101`
+
 `0101`
+
 `10101`
 
 **Input**
@@ -60,8 +67,13 @@ Take a number and print a pattern. See the input and output pair given below:
 
 **Output**
 `0`
+
 `10`
+
 `010`
+
 `1010`
+
 `01010`
+
 `101010`
