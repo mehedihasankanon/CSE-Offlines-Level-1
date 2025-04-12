@@ -36,19 +36,35 @@ Take a number and print a pattern. See the input and output pair given below:
 
 ### Sample Input and Output Pair
 
-| 4 | 0
+**Input**
+`4`
+**Output**
+`
+0
 10
 010
-1010 |
-| --- | --- |
-| 5 | 1
+1010
+`
+
+**Input**
+`5`
+**Output**
+`
+1
 01
 101
 0101
-10101 |
-| 6 | 0
+10101
+`
+
+**Input**
+`6`
+**Output**
+`
+0
 10
 010
 1010
 01010
-101010 |
+101010
+`
