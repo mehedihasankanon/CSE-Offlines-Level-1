@@ -40,6 +40,7 @@ Take a number and print a pattern. See the input and output pair given below:
 `4`
 
 **Output**
+
 `0`
 
 `10`
@@ -52,6 +53,7 @@ Take a number and print a pattern. See the input and output pair given below:
 `5`
 
 **Output**
+
 `1`
 
 `01`
@@ -66,6 +68,7 @@ Take a number and print a pattern. See the input and output pair given below:
 `6`
 
 **Output**
+
 `0`
 
 `10`
