@@ -32,7 +32,5 @@
 - **Functional Programming** – Lambdas and the Stream API.
 - **Networking** – Basic socket programming with `ServerSocket` and `Socket`.
 
-## 📂 Contents
-- `Assignments/` – Offlines with code.
 
 
