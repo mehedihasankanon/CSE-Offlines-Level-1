@@ -1,6 +1,6 @@
 # CSE106 – Data Structures and Algorithms I Sessional
 
-## 📘 Topics Covered
+## Topics Covered
 
 - Introduction to algorithms and asymptotic analysis
 - Growth of functions: Big-O, Omega, Theta, little-o, and little-omega notations
