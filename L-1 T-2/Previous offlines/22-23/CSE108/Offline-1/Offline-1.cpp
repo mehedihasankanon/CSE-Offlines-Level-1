@@ -8,7 +8,7 @@ class Rectangle
 {
 private:
     double width, height;
-    char *color;
+    char *color = nullptr;
 
 public:
     Rectangle() = default;
@@ -21,7 +21,8 @@ public:
         strcpy(color, col);
     }
 
-    ~Rectangle() {
+    ~Rectangle()
+    {
         free(color);
     }
 
@@ -63,7 +64,7 @@ class Triangle
 {
 private:
     double a, b, c;
-    char *color;
+    char *color = nullptr;
 
 public:
     Triangle() = default;
@@ -77,7 +78,8 @@ public:
         strcpy(color, col);
     }
 
-    ~Triangle() {
+    ~Triangle()
+    {
         free(color);
     }
 
@@ -112,7 +114,7 @@ class Circle
 private:
     const double PI = 3.14159265;
     double r;
-    char *color;
+    char *color = nullptr;
 
 public:
     Circle() = default;
@@ -124,7 +126,8 @@ public:
         strcpy(color, col);
     }
 
-    ~Circle() {
+    ~Circle()
+    {
         free(color);
     }
 
@@ -161,7 +164,9 @@ public:
     {
         Rects[idxRec].setWidth(Rec.getWidth());
         Rects[idxRec].setHeight(Rec.getHeight());
-        Rects[idxRec].setColor(Rec.getColor());
+        char new_s[100];
+        strcpy(new_s, Rec.getColor());
+        Rects[idxRec].setColor(new_s);
         idxRec++;
     }
     void addTriangle(Triangle &Tri)
@@ -169,13 +174,17 @@ public:
         Tris[idxTri].setA(Tri.getA());
         Tris[idxTri].setB(Tri.getB());
         Tris[idxTri].setC(Tri.getC());
-        Tris[idxTri].setColor(Tri.getColor());
+        char new_s[100];
+        strcpy(new_s, Tri.getColor());
+        Tris[idxTri].setColor(new_s);
         idxTri++;
     }
     void addCircle(Circle &Cir)
     {
         Circs[idxCir].setRad(Cir.getRad());
-        Circs[idxCir].setColor(Cir.getColor());
+        char new_s[100];
+        strcpy(new_s, Cir.getColor());
+        Circs[idxCir].setColor(new_s);
         idxCir++;
     }
 
