@@ -1,87 +1,101 @@
-#include<iostream>
-#include<string.h>
-#include<cmath>
+#include <iostream>
+#include <string.h>
+#include <cmath>
 
 using namespace std;
 
-class Rectangle {
+class Rectangle
+{
 private:
     double width, height;
-    char* color = (char *)malloc(100);
+    char *color;
 
 public:
-    Rectangle () = default;
+    Rectangle() = default;
 
-    Rectangle(double a, double b, const char* col) {
-        height = a; 
+    Rectangle(double a, double b, const char *col)
+    {
+        height = a;
         width = b;
-        strcpy(color,col);
+        color = (char *)malloc(100);
+        strcpy(color, col);
     }
-    
-    double getPerimeter() {return 2 * (width + height);}
 
-    double getArea() { return width * height;}
+    ~Rectangle() {
+        free(color);
+    }
 
+    double getPerimeter() { return 2 * (width + height); }
 
-    // getter - setter
-    char* getColor() { return color; }
+    double getArea() { return width * height; }
 
-    void setColor(const char* newCol)
+    char *getColor() { return color; }
+
+    void setColor(const char *newCol)
     {
         free(color);
         color = (char *)malloc(100);
-        strcpy(color,newCol);
+        strcpy(color, newCol);
     }
 
-    void setWidth(double wid) {
+    void setWidth(double wid)
+    {
         width = wid;
     }
 
-    void setHeight(double hei) {
+    void setHeight(double hei)
+    {
         height = hei;
     }
 
-    double getHeight() {
+    double getHeight()
+    {
         return height;
     }
 
-    double getWidth() {
+    double getWidth()
+    {
         return width;
     }
-
 };
 
-class Triangle {
+class Triangle
+{
 private:
     double a, b, c;
-    char* color = (char *)malloc(100);
+    char *color;
 
 public:
     Triangle() = default;
 
-    Triangle(double a, double b, double c, const char* col)
+    Triangle(double a, double b, double c, const char *col)
     {
-        this->a = a;            
+        this->a = a;
         this->b = b;
         this->c = c;
-        strcpy(color,col);
+        color = (char *)malloc(100);
+        strcpy(color, col);
     }
-    
-    double getPerimeter() {return a + b + c;}
 
-    double getArea() 
+    ~Triangle() {
+        free(color);
+    }
+
+    double getPerimeter() { return a + b + c; }
+
+    double getArea()
     {
         double s = 0.5 * (a + b + c);
         return sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
-    char* getColor() { return color; }
+    char *getColor() { return color; }
 
-    void setColor(const char* newCol)
+    void setColor(const char *newCol)
     {
         free(color);
         color = (char *)malloc(100);
-        strcpy(color,newCol);
+        strcpy(color, newCol);
     }
 
     double getA() { return a; }
@@ -93,42 +107,47 @@ public:
     void setC(double C) { c = C; }
 };
 
-class Circle {
+class Circle
+{
 private:
     const double PI = 3.14159265;
     double r;
-    char* color = (char *)malloc(100);
+    char *color;
 
 public:
     Circle() = default;
 
-    Circle(double r, const char* col)
+    Circle(double r, const char *col)
     {
         this->r = r;
-        strcpy(color,col);
+        color = (char *)malloc(100);
+        strcpy(color, col);
     }
-    
-    double getPerimeter() {return 2 * PI * r;}
+
+    ~Circle() {
+        free(color);
+    }
+
+    double getPerimeter() { return 2 * PI * r; }
 
     double getArea() { return PI * r * r; }
 
-    char* getColor() { return color; }
+    char *getColor() { return color; }
 
-    void setColor(const char* newCol)
+    void setColor(const char *newCol)
     {
         free(color);
         color = (char *)malloc(100);
-        strcpy(color,newCol);
+        strcpy(color, newCol);
     }
 
     void setRad(double rad) { r = rad; }
 
     double getRad() { return r; }
-    
 };
 
-
-class ShapeCollection {
+class ShapeCollection
+{
 private:
     Rectangle Rects[100];
     int idxRec = 0;
@@ -138,20 +157,23 @@ private:
     int idxCir = 0;
 
 public:
-    void addRectangle(Rectangle& Rec) {
+    void addRectangle(Rectangle &Rec)
+    {
         Rects[idxRec].setWidth(Rec.getWidth());
         Rects[idxRec].setHeight(Rec.getHeight());
         Rects[idxRec].setColor(Rec.getColor());
         idxRec++;
     }
-    void addTriangle(Triangle& Tri) {
+    void addTriangle(Triangle &Tri)
+    {
         Tris[idxTri].setA(Tri.getA());
         Tris[idxTri].setB(Tri.getB());
         Tris[idxTri].setC(Tri.getC());
-        Rects[idxTri].setColor(Tri.getColor());
+        Tris[idxTri].setColor(Tri.getColor());
         idxTri++;
     }
-    void addCircle(Circle& Cir) {
+    void addCircle(Circle &Cir)
+    {
         Circs[idxCir].setRad(Cir.getRad());
         Circs[idxCir].setColor(Cir.getColor());
         idxCir++;
@@ -161,24 +183,27 @@ public:
     int getTriCount() { return idxTri; }
     int getCircCount() { return idxCir; }
 
-    void printRectangles() {
-        for(int i = 0; i < idxRec; i++)
+    void printRectangles()
+    {
+        for (int i = 0; i < idxRec; i++)
         {
             // Rectangle 0: length: 10 width: 20
             cout << "Rectangle " << i << ": " << "length: " << Rects[i].getHeight() << " " << "width: " << Rects[i].getWidth() << endl;
         }
     }
 
-    void printTriangles() {
-        for(int i = 0; i < idxTri; i++)
+    void printTriangles()
+    {
+        for (int i = 0; i < idxTri; i++)
         {
             // Triangle 0: a: 3 b: 4 c: 5
             cout << "Triangle " << i << ": " << "a: " << Tris[i].getA() << " " << "b: " << Tris[i].getB() << "c: " << Tris[i].getC() << endl;
         }
     }
 
-    void printCircles() {
-        for(int i = 0; i < idxCir; i++)
+    void printCircles()
+    {
+        for (int i = 0; i < idxCir; i++)
         {
             // Rectangle 0: length: 10 width: 20
             cout << "Circle " << i << ": " << "radius: " << Circs[i].getRad() << endl;
@@ -186,7 +211,8 @@ public:
     }
 };
 
-int main() {
+int main()
+{
     // Create rectangle with length, width, color
     Rectangle r1(10, 20, "Red");
     // The Color is stored using malloc, which will be freed during destruction
@@ -198,7 +224,7 @@ int main() {
     r1.setColor("Yellow");
     cout << "Rectangle Color: " << r1.getColor() << endl;
     cout << "--------------------------------------" << endl;
- 
+
     // Create triangle with a, b, c, color. (a, b, c are lengths of the sides)
     Triangle t1(3, 4, 5, "Blue");
     cout << "Triangle Perimeter: " << t1.getPerimeter() << endl;
@@ -207,7 +233,7 @@ int main() {
     t1.setColor("Orange");
     cout << "Triangle Color: " << t1.getColor() << endl;
     cout << "--------------------------------------" << endl;
- 
+
     // Create circle with radius, color
     Circle c1(7, "Green");
     cout << "Circle Perimeter: " << c1.getPerimeter() << endl;
@@ -216,36 +242,36 @@ int main() {
     c1.setColor("Purple");
     cout << "Circle Color: " << c1.getColor() << endl;
     cout << "--------------------------------------" << endl;
- 
+
     /*
-    When constructing the ShapeCollection class, you will create static arrays for 100 
+    When constructing the ShapeCollection class, you will create static arrays for 100
     rectangles, triangles and circles. You don’t have to dynamically allocate memory for this.
-    */ 
+    */
     ShapeCollection shapes;
     /* IMPORTANT: You need to pass the objects by reference to the add functions
     If you pass by value, the copy constructor will be called and the dynamically
-    allocated memory will be copied, leading to double free errors when things go 
-    out of scope. Once passed by reference, do not directly store the reference in 
+    allocated memory will be copied, leading to double free errors when things go
+    out of scope. Once passed by reference, do not directly store the reference in
     the array. Instead, copy the data from the reference to the array element.
     We will see better ways to handle this in the upcoming sessions.
-    */ 
+    */
     shapes.addRectangle(r1);
     shapes.addTriangle(t1);
     shapes.addCircle(c1);
- 
+
     Rectangle r2(15, 25, "Black");
     shapes.addRectangle(r2);
     Triangle t2(5, 12, 13, "White");
     shapes.addTriangle(t2);
- 
+
     cout << "Number of Rectangles: " << shapes.getRectCount() << endl;
     cout << "Number of Triangles: " << shapes.getTriCount() << endl;
     cout << "Number of Circles: " << shapes.getCircCount() << endl;
     cout << "--------------------------------------" << endl;
- 
+
     shapes.printRectangles();
     shapes.printTriangles();
     shapes.printCircles();
- 
+
     return 0;
 }
