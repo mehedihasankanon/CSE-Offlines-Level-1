@@ -4,7 +4,8 @@ Implement classes to represent basic geometric shapes (`Rectangle`, `Triangle`, 
 
 - Computation of **area** and **perimeter**
 - Support for a dynamically managed **color**
-- Aggregation using a `ShapeCollection` class
+
+Using a `ShapeCollection` class to store some instances of the classes
 
 ---
 
