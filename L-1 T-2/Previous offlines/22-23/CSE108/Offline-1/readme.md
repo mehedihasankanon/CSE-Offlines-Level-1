@@ -35,7 +35,6 @@ etc.
 ## Concepts Practiced
 
 - Encapsulation
-- Composition
 - Pass-by-reference
 - Avoiding common memory bugs (e.g., shallow copy, double-free)
 
