@@ -196,7 +196,6 @@ public:
     {
         for (int i = 0; i < idxRec; i++)
         {
-            // Rectangle 0: length: 10 width: 20
             cout << "Rectangle " << i << ": " << "length: " << Rects[i].getHeight() << " " << "width: " << Rects[i].getWidth() << endl;
         }
     }
@@ -205,7 +204,6 @@ public:
     {
         for (int i = 0; i < idxTri; i++)
         {
-            // Triangle 0: a: 3 b: 4 c: 5
             cout << "Triangle " << i << ": " << "a: " << Tris[i].getA() << " " << "b: " << Tris[i].getB() << "c: " << Tris[i].getC() << endl;
         }
     }
@@ -214,7 +212,6 @@ public:
     {
         for (int i = 0; i < idxCir; i++)
         {
-            // Rectangle 0: length: 10 width: 20
             cout << "Circle " << i << ": " << "radius: " << Circs[i].getRad() << endl;
         }
     }
@@ -222,19 +219,16 @@ public:
 
 int main()
 {
-    // Create rectangle with length, width, color
     Rectangle r1(10, 20, "Red");
-    // The Color is stored using malloc, which will be freed during destruction
+
     cout << "Rectangle Perimeter: " << r1.getPerimeter() << endl;
     cout << "Rectangle Area: " << r1.getArea() << endl;
     cout << "Rectangle Color: " << r1.getColor() << endl;
-    // When changing the color, you need to free the memory of the old color
-    // and allocate new memory for the new color
+
     r1.setColor("Yellow");
     cout << "Rectangle Color: " << r1.getColor() << endl;
     cout << "--------------------------------------" << endl;
 
-    // Create triangle with a, b, c, color. (a, b, c are lengths of the sides)
     Triangle t1(3, 4, 5, "Blue");
     cout << "Triangle Perimeter: " << t1.getPerimeter() << endl;
     cout << "Triangle Color: " << t1.getColor() << endl;
@@ -243,7 +237,6 @@ int main()
     cout << "Triangle Color: " << t1.getColor() << endl;
     cout << "--------------------------------------" << endl;
 
-    // Create circle with radius, color
     Circle c1(7, "Green");
     cout << "Circle Perimeter: " << c1.getPerimeter() << endl;
     cout << "Circle Area: " << c1.getArea() << endl;
@@ -252,18 +245,8 @@ int main()
     cout << "Circle Color: " << c1.getColor() << endl;
     cout << "--------------------------------------" << endl;
 
-    /*
-    When constructing the ShapeCollection class, you will create static arrays for 100
-    rectangles, triangles and circles. You don’t have to dynamically allocate memory for this.
-    */
     ShapeCollection shapes;
-    /* IMPORTANT: You need to pass the objects by reference to the add functions
-    If you pass by value, the copy constructor will be called and the dynamically
-    allocated memory will be copied, leading to double free errors when things go
-    out of scope. Once passed by reference, do not directly store the reference in
-    the array. Instead, copy the data from the reference to the array element.
-    We will see better ways to handle this in the upcoming sessions.
-    */
+
     shapes.addRectangle(r1);
     shapes.addTriangle(t1);
     shapes.addCircle(c1);
