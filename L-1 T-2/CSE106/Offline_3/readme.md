@@ -14,9 +14,9 @@
 Run the `test.ps1` file in the directory
 
 ## Runtime Complexity of the method implementations
-    - `ENQUEUE`: O(1)
-    - `DEQUEUE`: O(1) amortized
-    - `CLEAR`: O(1) for ArrayStack, O(n) for ListStack
-    - `FRONT`, `BACK`: O(1)
-    - `IS_EMPTY`: O(1)
-    - `RESIZE`: O(n) for ArrayStack, not defined for ListStack
+- `ENQUEUE`: O(1)
+- `DEQUEUE`: O(1) amortized
+- `CLEAR`: O(1) for ArrayStack, O(n) for ListStack
+- `FRONT`, `BACK`: O(1)
+- `IS_EMPTY`: O(1)
+- `RESIZE`: O(n) for ArrayStack, not defined for ListStack
