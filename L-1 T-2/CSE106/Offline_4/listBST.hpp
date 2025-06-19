@@ -64,7 +64,55 @@ private:
         }
     }
 
-    bool findhelp(Node *node, Key key)
+    Node *removehelp(Node *node, Key key)
+    {
+        if (!node)
+            return nullptr;
+
+        if (key < node->key)
+        {
+            node->left = removehelp(node->left, key);
+        }
+        else if (key > node->key)
+        {
+            node->right = removehelp(node->right, key);
+        }
+        else
+        {
+            if (!node->left && !node->right)
+            {
+                delete node;
+                return nullptr;
+            }
+
+            if (!node->right)
+            {
+                Node *ret = node->left;
+                delete node;
+                return ret;
+            }
+            else if (!node->left)
+            {
+                Node *ret = node->right;
+                delete node;
+                return ret;
+            }
+
+            Node *successor = node->right;
+            while (successor->left)
+            {
+                successor = successor->left;
+            }
+
+            node->key = successor->key;
+            node->value = successor->value;
+            node->right = removehelp(node->right, node->key);
+        }
+
+        return node;
+    }
+
+    bool findhelp(Node *node, Key key) const
     {
         if (!node)
             return false;
@@ -76,7 +124,7 @@ private:
         return findhelp(node->right, key);
     }
 
-    Value gethelp(Node *node, Key key)
+    Value gethelp(Node *node, Key key) const
     {
         if (node->key == key)
             return node->value;
@@ -112,7 +160,7 @@ private:
         delete node;
     }
 
-    size_t sizehelp(Node *node)
+    size_t sizehelp(Node *node) const
     {
         if (!node)
             return 0;
@@ -120,14 +168,14 @@ private:
         return sizehelp(node->left) + 1 + sizehelp(node->right);
     }
 
-    Key find_minhelp(Node *node)
+    Key find_minhelp(Node *node) const
     {
         if (!node->left)
             return node->key;
         return find_minhelp(node->left);
     }
 
-    Key find_maxhelp(Node *node)
+    Key find_maxhelp(Node *node) const
     {
         if (!node->right)
             return node->key;
@@ -149,10 +197,19 @@ private:
             return;
         }
 
-        std::cout << "(" << node->key << ":" << node->value << " ";
-        print_default(node->left);
-        std::cout << " ";
-        print_default(node->right);
+        std::cout << "(" << node->key << ":" << node->value;
+        if (node->right)
+        {
+            std::cout << " ";
+            print_default(node->left);
+            std::cout << " ";
+            print_default(node->right);
+        }
+        else if (node->left)
+        {
+            std::cout << " ";
+            print_default(node->left);
+        }
         std::cout << ")";
     }
 
@@ -195,6 +252,12 @@ public:
     bool remove(Key key) override
     {
         // TODO: Implement removal logic
+        if (!find(key))
+            return false;
+
+        root = removehelp(root, key);
+        node_count--;
+        return true;
     }
 
     /**
@@ -214,7 +277,7 @@ public:
     {
         // TODO: Implement get logic
         if (!find(key))
-            throw std::runtime_error("Key " + key + " not found in BST");
+            throw std::runtime_error("Key not found in BST");
 
         return gethelp(root, key);
     }
@@ -226,7 +289,7 @@ public:
     {
         // TODO: Implement update logic
         if (!find(key))
-            throw std::runtime_error("Update error! Key " + key + " not found in BST");
+            throw std::runtime_error("Update error! Key not found in BST");
 
         updatehelp(root, key, value);
     }
@@ -248,7 +311,8 @@ public:
     size_t size() const override
     {
         // TODO: Implement size logic
-        return sizehelp(root);
+        // return sizehelp(root);
+        return node_count;
     }
 
     /**
@@ -268,7 +332,7 @@ public:
         // TODO: Implement find_min logic
 
         if (!root)
-            throw std::runtime_error;
+            throw std::runtime_error("BST is empty");
 
         return find_minhelp(root);
     }
@@ -281,7 +345,7 @@ public:
         // TODO: Implement find_max logic
 
         if (!root)
-            throw std::runtime_error;
+            throw std::runtime_error("BST is empty");
 
         return find_maxhelp(root);
     }
@@ -293,7 +357,25 @@ public:
     {
         // TODO: Implement print logic
         if (tolower(traversal_type) == 'd')
+        {
+            std::cout << "BST (Default): ";
             print_default(root);
+        }
+        else if(tolower(traversal_type) == 'p')
+        {
+            std::cout << "BST (Pre-order): ";
+
+        }
+        else if(tolower(traversal_type) == 'I')
+        {
+            std::cout << "BST (In-order): ";
+
+        }
+        else
+        {
+            std::cout << "BST (Post-order): ";
+
+        }
     }
 };
 
