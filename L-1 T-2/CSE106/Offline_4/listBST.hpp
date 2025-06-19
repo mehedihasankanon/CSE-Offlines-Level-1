@@ -160,13 +160,13 @@ private:
         delete node;
     }
 
-    size_t sizehelp(Node *node) const
-    {
-        if (!node)
-            return 0;
+    // size_t sizehelp(Node *node) const
+    // {
+    //     if (!node)
+    //         return 0;
 
-        return sizehelp(node->left) + 1 + sizehelp(node->right);
-    }
+    //     return sizehelp(node->left) + 1 + sizehelp(node->right);
+    // }
 
     Key find_minhelp(Node *node) const
     {
@@ -211,6 +211,60 @@ private:
             print_default(node->left);
         }
         std::cout << ")";
+    }
+
+    void print_inorder(Node *node) const
+    {
+        if (node == root && !root)
+        {
+            std::cout << "()";
+            return;
+        }
+
+        if (!node)
+        {
+            return;
+        }
+
+        print_inorder(node->left);
+        std::cout << "(" << node->key << ":" << node->value << ") ";
+        print_inorder(node->right);
+    }
+
+    void print_preorder(Node *node) const
+    {
+        if (node == root && !root)
+        {
+            std::cout << "()";
+            return;
+        }
+
+        if (!node)
+        {
+            return;
+        }
+
+        std::cout << "(" << node->key << ":" << node->value << ") ";
+        print_preorder(node->left);
+        print_preorder(node->right);
+    }
+
+    void print_postorder(Node *node) const
+    {
+        if (node == root && !root)
+        {
+            std::cout << "()";
+            return;
+        }
+
+        if (!node)
+        {
+            return;
+        }
+
+        print_postorder(node->left);
+        print_postorder(node->right);
+        std::cout << "(" << node->key << ":" << node->value << ") ";
     }
 
     // End your private helper functions here
@@ -361,20 +415,20 @@ public:
             std::cout << "BST (Default): ";
             print_default(root);
         }
-        else if(tolower(traversal_type) == 'p')
+        else if (tolower(traversal_type) == 'p')
         {
             std::cout << "BST (Pre-order): ";
-
+            print_preorder(root);
         }
-        else if(tolower(traversal_type) == 'I')
+        else if (tolower(traversal_type) == 'i')
         {
             std::cout << "BST (In-order): ";
-
+            print_inorder(root);
         }
         else
         {
             std::cout << "BST (Post-order): ";
-
+            print_postorder(root);
         }
     }
 };

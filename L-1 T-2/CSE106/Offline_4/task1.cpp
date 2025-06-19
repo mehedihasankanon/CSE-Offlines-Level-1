@@ -157,33 +157,30 @@ int main(int argc, char **argv)
             }
             delete[] choice;
         }
-        else if (c =='T')
+        else if (c == 'T')
         {
             char *choice = new char[5];
             in_file >> choice;
 
-            
-
-            if(strcmp(choice, "In") == 0)
+            if (strcmp(choice, "In") == 0)
             {
                 bst->print('I');
             }
-            else if(strcmp(choice, "Pre") == 0)
+            else if (strcmp(choice, "Pre") == 0)
             {
                 bst->print('P');
             }
-            else if(strcmp(choice, "Post") == 0)
+            else if (strcmp(choice, "Post") == 0)
             {
                 bst->print('O');
             }
-            else 
+            else
             {
                 bst->print();
             }
             cout << endl;
 
             delete[] choice;
-
         }
         // End your code here
     }
