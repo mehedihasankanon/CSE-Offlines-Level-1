@@ -1,4 +1,4 @@
-### Offline assignment on stack
+### Offline assignment on queue
 
 ## Files
 1.  `queue.h`: Contains the abstract class definition for queue, with two derived classs definitions we use for implementing our stack: one using dynamic array and another using a linked list.
