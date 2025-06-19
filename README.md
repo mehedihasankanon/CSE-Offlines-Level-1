@@ -14,5 +14,7 @@ Introduction to algorithms; Asymptotic analysis: growth of functions, $\mathcal{
 
 ### CSE 108: Object Oriented Programming Sessional
 Philosophy of object oriented programming (OOP); Basic principles of OOP: abstraction, encapsulation, polymorphism, inheritance; Advantages of OOP over structured programming; 
+
 **C++**: Classes and objects: specifying a class, access specifiers; Functions: inline functions, friend functions; Constructors and destructors; Operator overloading and type conversions; Inheritance: single inheritance, multilevel inheritance, multiple inheritance; Polymorphism: function overloading, virtual functions, pure virtual functions; Templates: class templates, function templates, introduction to the standard template library (STL);
+
 **Java**: Nested and Inner classes; Local variable type inference; Strings: String, StringBuffer, StringBuilder; Inheritance: abstract class and anonymous subclasses, object class; Access protection with package; Interface; Exception; Thread: multithreading, Introduction to Java concurrency utilities; Generics and collections; Stream API and lambda expressions; Networking: ServerSocket, Socket.
