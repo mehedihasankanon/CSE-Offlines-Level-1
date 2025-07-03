@@ -9,9 +9,20 @@ class AdjacencyMatrixGraph : public GraphADT
 private:
     //TODO: Consider necessary private members as per your discretion
 
+    int capacity = 2;
+    int maxNodeIndex = 0;
+    bool *nodeExists = nullptr;
+
+    int** adjMatrix = nullptr;
+
+
+
+
     void resizeMatrix()
     {
         //TODO: you need to resize your matrix when you will less data or more data
+
+        
     }
 
 public:
