@@ -243,7 +243,7 @@ public:
             cur = parent[cur];
         }
         
-        std::cout << "Shortest Path: ";
+        std::cout << "Shortest path: ";
         for(int i = sz - 1; i >= 0; i--)
         {
             std::cout << path[i] << " ";

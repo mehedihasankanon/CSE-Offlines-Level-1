@@ -18,7 +18,7 @@ private:
         // TODO: you need to resize your matrix when you will less data or more data
 
         int **newAdjMatrix = new int *[newCapacity + 1];
-        for (int i = 0; i < newCapacity; i++)
+        for (int i = 0; i <= newCapacity; i++)
         {
             newAdjMatrix[i] = new int[newCapacity + 1];
             for (int j = 0; j <= newCapacity; j++)
@@ -221,7 +221,7 @@ public:
             cur = parent[cur];
         }
 
-        std::cout << "Shortest Path: ";
+        std::cout << "Shortest path: ";
         for (int i = sz - 1; i >= 0; i--)
         {
             std::cout << path[i] << " ";

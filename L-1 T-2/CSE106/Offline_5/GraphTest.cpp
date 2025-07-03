@@ -84,6 +84,7 @@ int main()
     //     std::cout << n << " ";
     // }
     print(&neighbors);
+    free_list(&neighbors);
     std::cout << "\n";
 
 
