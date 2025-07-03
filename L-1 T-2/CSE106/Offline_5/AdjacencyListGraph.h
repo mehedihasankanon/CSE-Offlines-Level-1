@@ -316,9 +316,17 @@ public:
     {
         // TODO: Return the list of neighbors.
         YourListType ans = YourListType();
+        init(&ans);
         if (u < 0 || u > maxNodeIndex || !nodeExists[u])
             return ans;
-        return adjList[u];
+        
+        node *it = get_head(&adjList[u]);
+        while(it)
+        {
+            append(it->element, &ans);
+            it= it->next;
+        }
+        return ans;
     }
 };
 

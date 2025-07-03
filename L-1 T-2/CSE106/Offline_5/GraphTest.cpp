@@ -7,8 +7,8 @@
 #include "AdjacencyMatrixGraph.h"
 
 // Toggle between implementations
-// #define USE_ADJACENCY_LIST
-#define USE_ADJACENCY_MATRIX
+#define USE_ADJACENCY_LIST
+// #define USE_ADJACENCY_MATRIX
 
 int main()
 {
@@ -84,7 +84,7 @@ int main()
     //     std::cout << n << " ";
     // }
     print(&neighbors);
-    free_list(&neighbors);
+    clear(&neighbors);
     std::cout << "\n";
 
 
