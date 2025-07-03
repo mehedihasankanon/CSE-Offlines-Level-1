@@ -4,7 +4,7 @@
 #include <string>
 #include "GraphADT.h"
 #include "AdjacencyListGraph.h"
-#include "AdjacencyMatrixGraph.h"
+// #include "AdjacencyMatrixGraph.h"
 
 // Toggle between implementations
 #define USE_ADJACENCY_LIST
@@ -24,7 +24,7 @@ int main()
 #endif
 
     std::ifstream infile("input.txt");
-    freopen("output.txt", "w", stdout);
+    freopen("my_output.txt", "w", stdout);
     if (!infile.is_open())
     {
         std::cerr << "Failed to open input.txt\n";
@@ -77,12 +77,13 @@ int main()
     graph->FindShortestPath(7, 20);
     std::cout << "Length: " << graph->FindShortestPathLength(7, 20) << "\n";
 
-    std::cout << "Neighbors of node 3: ";
+    std::cout << "Neighbors of node 3:";
     auto neighbors = graph->GetNeighbors(3);
-    for (int n : neighbors)
-    {
-        std::cout << n << " ";
-    }
+    // for (int n : neighbors)
+    // {
+    //     std::cout << n << " ";
+    // }
+    print(&neighbors);
     std::cout << "\n";
 
 

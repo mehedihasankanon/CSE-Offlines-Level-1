@@ -45,20 +45,20 @@ void print(linkedList *list)
 {
     if (list->head == NULL)
     {
-        printf("[ . ]\n");
+        printf("\n");
         return;
     }
 
     node *ls = list->head;
-    printf("[");
+    // printf("[");
     while (ls != NULL)
     {
         printf(" %d", ls->element);
-        if (ls == list->cur)
-            printf("|");
+        // if (ls == list->cur)
+        //     printf("|");
         ls = ls->next;
     }
-    printf(" ]\n");
+    printf(" \n");
 }
 
 void insert(int item, linkedList *list)
@@ -73,7 +73,7 @@ void insert(int item, linkedList *list)
         list->tail = el;
         list->cur = el;
 
-        print(list);
+        // print(list);
 
         return;
     }
@@ -89,7 +89,7 @@ void insert(int item, linkedList *list)
     if (list->cur->next == NULL)
         list->tail = list->cur;
 
-    print(list);
+    // print(list);
 }
 
 int delete_cur(linkedList *list)
@@ -98,7 +98,7 @@ int delete_cur(linkedList *list)
 
     if (!list->cur)
     {
-        print(list);
+        // print(list);
         return 0;
     }
 
@@ -118,7 +118,7 @@ int delete_cur(linkedList *list)
         list->head = list->cur->next;
         list->cur = list->cur->next;
         free(del);
-        print(list);
+        // print(list);
         return x;
     }
 
@@ -130,7 +130,7 @@ int delete_cur(linkedList *list)
         list->tail = list->cur->prev;
         list->cur = list->cur->prev;
         free(del);
-        print(list);
+        // print(list);
         return x;
     }
 
@@ -145,7 +145,7 @@ int delete_cur(linkedList *list)
         list->cur = list->cur->prev;
 
     free(del);
-    print(list);
+    // print(list);
     return x;
 }
 
@@ -162,7 +162,7 @@ void append(int item, linkedList *list)
         list->head = el;
         list->tail = el;
         list->cur = el;
-        print(list);
+        // print(list);
         return;
     }
 
@@ -172,7 +172,7 @@ void append(int item, linkedList *list)
     el->next = NULL;
     el->prev = list->tail;
     list->tail = el;
-    print(list);
+    // print(list);
 }
 
 int size(linkedList *list)
@@ -188,54 +188,6 @@ int size(linkedList *list)
         size++;
     }
     return size;
-}
-
-void prev(int n, linkedList *list)
-{
-    // implement prev function
-    if(!list->cur) 
-    {
-        print(list);
-        return;
-    }
-    while (n > 0)
-    {
-        if (list->cur->prev)
-        {
-            list->cur = list->cur->prev;
-            n--;
-        }
-        else
-        {
-            print(list);
-            return;
-        }
-    }
-    print(list);
-}
-
-void next(int n, linkedList *list)
-{
-    // implement next function
-    if(!list->cur) 
-    {
-        print(list);
-        return;
-    }
-    while (n > 0)
-    {
-        if (list->cur->next)
-        {
-            list->cur = list->cur->next;
-            n--;
-        }
-        else
-        {
-            print(list);
-            return;
-        }
-    }
-    print(list);
 }
 
 int is_present(int n, linkedList *list)
@@ -264,7 +216,7 @@ void clear(linkedList *list)
     list->head = NULL;
     list->tail = NULL;
     list->cur = NULL;
-    print(list);
+    // print(list);
 }
 
 void delete_item(int item, linkedList *list)
@@ -297,7 +249,7 @@ void delete_item(int item, linkedList *list)
         if (ls->next)
             ls->next->prev = ls->prev;
         free(ls);
-        print(list);
+        // print(list);
         return;
     }
     // printf("%d not found\n", item);
@@ -308,7 +260,7 @@ void swap_ind(int ind1, int ind2, linkedList *list)
     // implement swap function
     if(ind1 == ind2)
     {
-        print(list);
+        // print(list);
         return;
     }
     node *ls1 = list->head, *ls2 = list->head;
@@ -328,7 +280,7 @@ void swap_ind(int ind1, int ind2, linkedList *list)
     int temp = ls1->element;
     ls1->element = ls2->element;
     ls2->element = temp;
-    print(list);
+    // print(list);
 }
 
 node *get_head(linkedList *list)
