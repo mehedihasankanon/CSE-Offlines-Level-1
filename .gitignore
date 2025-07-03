@@ -1,6 +1,9 @@
-# Ignore all .vscode folders
-.vscode/
+# Ignore Visual Studio Code configuration folder in any directory
 **/.vscode/
 
-# Ignore all .exe files anywhere
-*.exe
+# Ignore all executable files in any directory
+**/*.exe
+
+# Ignore submission folders and zip files in any directory
+**/2305052/
+**/2305052.zip
