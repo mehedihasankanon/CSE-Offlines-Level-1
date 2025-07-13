@@ -4,7 +4,7 @@
 
 int main() {
     // Open the file in write mode
-    std::ofstream outFile("stress.txt");
+    std::ofstream outFile("numbers.txt");
     
     // Check if the file was opened successfully
     if (!outFile) {
