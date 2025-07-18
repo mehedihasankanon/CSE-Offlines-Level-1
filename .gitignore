@@ -7,3 +7,6 @@
 # Ignore submission folders and zip files in any directory
 **/2305052/
 **/2305052.zip
+
+# Ignore CPH testers
+**/.cph/
