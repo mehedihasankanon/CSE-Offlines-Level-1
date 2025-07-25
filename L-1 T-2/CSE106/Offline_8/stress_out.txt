@@ -1,0 +1,100 @@
+Test Case 1:
+Local Alignment:
+AGTT
+AGTT
+Local Maximum Score: 4
+Global Alignment:
+AGACTAGTTAC
+CGA--AGTT--
+Global Maximum Score: -3
+
+Test Case 2:
+Local Alignment:
+
+
+Local Maximum Score: 0
+Global Alignment:
+
+
+Global Maximum Score: 0
+
+Test Case 3:
+Local Alignment:
+
+
+Local Maximum Score: 0
+Global Alignment:
+ACTG
+----
+Global Maximum Score: -8
+
+Test Case 4:
+Local Alignment:
+A
+A
+Local Maximum Score: 1
+Global Alignment:
+A
+A
+Global Maximum Score: 1
+
+Test Case 5:
+Local Alignment:
+
+
+Local Maximum Score: 0
+Global Alignment:
+A
+C
+Global Maximum Score: -1
+
+Test Case 6:
+Local Alignment:
+
+
+Local Maximum Score: 0
+Global Alignment:
+AAAA
+CCCC
+Global Maximum Score: -4
+
+Test Case 7:
+Local Alignment:
+ACTG
+ACTG
+Local Maximum Score: 4
+Global Alignment:
+ACTG
+ACTG
+Global Maximum Score: 4
+
+Test Case 8:
+Local Alignment:
+A
+A
+Local Maximum Score: 1
+Global Alignment:
+ACTG
+A--G
+Global Maximum Score: -2
+
+Test Case 9:
+Local Alignment:
+A
+A
+Local Maximum Score: 2
+Global Alignment:
+ACTG
+AGTC
+Global Maximum Score: -2
+
+Test Case 10:
+Local Alignment:
+GTTGAGC
+GTTGAGC
+Local Maximum Score: 7
+Global Alignment:
+CAGGTAAATTC--ACGGT-T-TTGGACTT-TTTATC-CCAAGACACG-GGAGTTGAGCAG-ACAGCCACCTCCCACACCCGCCTGGAGGATAATGGTTGGACCGCAAC
+CAAGTCCAGTCATACAGTCTGTCGGCCTTAATAAGCTCCACTTTAAGAAGAG-T-AGCAGTGGGGCCACCT--GAGCTTTGCAT-GTTGTTGA-GCCT--ATGGTTTC
+Global Maximum Score: -14
+
