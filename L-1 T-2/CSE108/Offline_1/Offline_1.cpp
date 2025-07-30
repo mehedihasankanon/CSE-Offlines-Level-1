@@ -2,6 +2,12 @@
 
 using namespace std;
 
+/**
+ * custom GCD function
+ * @param int a
+ * @param int b
+ * @return int GCD of a and b
+ */
 int gcd(int a, int b)
 {
     if (b == 0)
@@ -9,20 +15,53 @@ int gcd(int a, int b)
     return gcd(b, a % b);
 }
 
+/**
+ * Fraction class
+ * Member variables:
+ * - numerator: int - the numerator of the fraction
+ * - denominator: int - the denominator of the fraction (1 by default)
+ *
+ * Constructors:
+ * - Default constructor: initializes numerator to 0 and denominator to 1
+ * - Single parameter constructor: initializes numerator to the given value and denominator to 1
+ * - Two parameters constructor: initializes numerator and denominator to the given values, checks for zero denominator, and reduces the fraction
+ *
+ * Member functions:
+ * - add: adds another Fraction or an integer to the current Fraction
+ * - sub: subtracts another Fraction or an integer from the current Fraction
+ * - mul: multiplies the current Fraction by another Fraction or an integer
+ * - div: divides the current Fraction by another Fraction or an integer, checks for division by zero
+ * - print: prints the Fraction in the format "numerator/denominator"
+ */
 class Fraction
 {
 private:
     int numerator = 0, denominator = 1;
 
 public:
+    /**
+     * Default constructor
+     * Initializes numerator to 0 and denominator to 1
+     */
     Fraction() = default;
 
+    /**
+     * Single parameter constructor
+     * Initializes numerator to the given value and denominator to 1
+     * @param a The numerator value
+     */
     Fraction(int a)
     {
         numerator = a;
         denominator = 1;
     }
 
+    /**
+     * Two parameters constructor
+     * Initializes numerator and denominator to the given values, checks for zero denominator, and reduces the fraction
+     * @param num The numerator value
+     * @param denum The denominator value
+     */
     Fraction(int num, int denum)
     {
         if (denum == 0)
@@ -46,8 +85,17 @@ public:
         denominator /= g;
     }
 
+    /**
+     * Destructor
+     */
     ~Fraction() {}
 
+    /**
+     * `add` method
+     * Adds another Fraction or an integer to the current Fraction
+     * @param f The Fraction object to add (pass by reference)
+     * @return A new Fraction that is the result of the addition
+     */
     Fraction add(Fraction &f)
     {
         int new_den = this->denominator * f.denominator;
@@ -61,6 +109,13 @@ public:
         return Fraction(new_num, new_den);
     }
 
+    /**
+     * `add` method
+     * adds an integer to the current Fraction. First converts the integer to a Fraction, then calls
+     * the `add` method of adding two Fractions
+     * @param n The integer to add
+     * @return A new Fraction that is the result of the addition
+     */
     Fraction add(int n)
     {
         Fraction f(n);
@@ -68,6 +123,12 @@ public:
         return (*this).add(f);
     }
 
+    /**
+     * `sub` method
+     * Subtracts another Fraction or an integer from the current Fraction
+     * @param f The Fraction object to subtract (pass by reference)
+     * @return A new Fraction that is the result of the subtraction
+     */
     Fraction sub(Fraction &f)
     {
         int new_den = this->denominator * f.denominator;
@@ -81,6 +142,13 @@ public:
         return Fraction(new_num, new_den);
     }
 
+    /**
+     * `sub` method
+     * Subtracts an integer from the current Fraction. First converts the integer to a Fraction, then calls
+     * the `sub` method of subtracting two Fractions
+     * @param n The integer to subtract
+     * @return A new Fraction that is the result of the subtraction
+     */
     Fraction sub(int n)
     {
         Fraction f(n);
@@ -88,6 +156,12 @@ public:
         return (*this).sub(f);
     }
 
+    /**
+     * `mul` method
+     * Multiplies the current Fraction by another Fraction or an integer
+     * @param f The Fraction object to multiply (pass by reference)
+     * @return A new Fraction that is the result of the multiplication
+     */
     Fraction mul(Fraction &f)
     {
         int new_denom = this->denominator * f.denominator;
@@ -101,6 +175,13 @@ public:
         return Fraction(new_num, new_denom);
     }
 
+    /**
+     * `mul` method
+     * Multiplies the current Fraction by an integer. First converts the integer to a Fraction, then calls
+     * the `mul` method of multiplying two Fractions
+     * @param n The integer to multiply
+     * @return A new Fraction that is the result of the multiplication
+     */
     Fraction mul(int n)
     {
         Fraction f(n);
@@ -108,6 +189,12 @@ public:
         return (*this).mul(f);
     }
 
+    /**
+     * `div` method
+     * Divides the current Fraction by another Fraction or an integer, checks for division by zero
+     * @param f The Fraction object to divide by (pass by reference)
+     * @return A new Fraction that is the result of the division
+     */
     Fraction div(Fraction &f)
     {
 
@@ -134,6 +221,13 @@ public:
         return Fraction(new_num, new_den);
     }
 
+    /**
+     * `div` method
+     * Divides the current Fraction by an integer. First converts the integer to a Fraction, then calls
+     * the `div` method of dividing two Fractions. CChecks for division by zero
+     * @param n The integer to divide by
+     * @return A new Fraction that is the result of the division
+     */
     Fraction div(int n)
     {
         if (n == 0)
@@ -147,6 +241,10 @@ public:
         return (*this).div(f);
     }
 
+    /**
+     * `print` method
+     * Prints the Fraction in the format "numerator/denominator"
+     */
     void print()
     {
         cout << numerator << "/" << denominator << endl;
@@ -157,13 +255,27 @@ public:
     int getNum() { return this->numerator; }
     int getDenom() { return this->denominator; }
 
-    void operator=(const Fraction& f)
+    /**
+     * Assignment operator overload
+     * Assigns the values of another Fraction to the current Fraction
+     * @param f The Fraction object to assign from (pass by reference)
+     */
+    void operator=(const Fraction &f)
     {
         this->denominator = f.denominator;
         this->numerator = f.numerator;
     }
 };
 
+/**
+ * `FractionCollection` class
+ * A collection class to manage multiple Fraction objects
+ *
+ * Members:
+ * - fractions: Fraction* - dynamic array of Fraction objects
+ * - maxlength: int - maximum size of the collection (by default 10)
+ * - length: int - current number of Fraction objects in the collection
+ */
 class FractionCollection
 {
 private:
@@ -172,6 +284,10 @@ private:
     int length;
 
 public:
+    /**
+     * Default constructor
+     * Initializes a collection with a maximum size of 10
+     */
     FractionCollection()
     {
         fractions = new Fraction[10];
@@ -179,6 +295,12 @@ public:
         length = 0;
     }
 
+    /**
+     * Parameterized constructor.
+     *
+     * Initializes a collection with a specified maximum size
+     * @param maxSize The maximum size of the collection
+     */
     FractionCollection(int maxSize)
     {
         fractions = new Fraction[maxSize];
@@ -186,13 +308,28 @@ public:
         length = 0;
     }
 
+    /**
+     * getter method for current collection length
+     * @return int - the current number of `Fraction` objects in the collection
+     */
     int getLen() { return length; }
 
+    /**
+     * Destructor
+     * Ensures proper cleanup of allocated memory from heap
+     */
     ~FractionCollection()
     {
         delete[] fractions;
     }
 
+    /**
+     * Inserts a Fraction at a specific position.
+     *
+     * Checks for out of bounds access and resizes the collection if necessary.
+     * @param pos The position to insert the Fraction
+     * @param f The Fraction object to insert
+     */
     void insert(int pos, Fraction f)
     {
 
@@ -228,15 +365,26 @@ public:
         }
     }
 
+    /**
+     * Inserts a Fraction at the end of the collection.
+     * Checks for out of bounds access and resizes the collection if necessary.
+     * @param f The Fraction object to insert
+     */
     void insert(Fraction f)
     {
         (*this).insert(length, f);
     }
 
+    /**
+     * Removes a `Fraction` object from the specified position.
+     *
+     * Checks for out of bounds access and shifts the remaining elements.
+     * @param pos The position of the `Fraction` object to remove
+     */
     void remove(int pos)
     {
 
-        if (pos > length)
+        if (pos > length || pos < 0)
         {
             cout << "Error: Out of bound access" << endl;
             return;
@@ -250,6 +398,13 @@ public:
         length--;
     }
 
+    /**
+     * Removes a `Fraction` object from the collection by value.
+     *
+     * Searches for the first occurrence of the specified `Fraction` and removes it.
+     * If multiple occurrences are found, only the first one is removed.
+     * @param f The `Fraction` object to remove
+     */
     void remove(Fraction f)
     {
         int idx = 0;
@@ -270,11 +425,20 @@ public:
          */
     }
 
+    /**
+     * Removes the last `Fraction` object from the collection.
+     */
     void remove()
     {
         (*this).remove(length - 1);
     }
 
+    /**
+     * Returns the maximum `Fraction` in the collection.
+     *
+     * Compares the 64-bit double values of the fractions and returns the one with the highest value.
+     * @return Fraction - the maximum `Fraction` object
+     */
     Fraction getMax()
     {
         Fraction ans(fractions[0].getNum(), fractions[0].getDenom());
@@ -294,6 +458,12 @@ public:
         return ans;
     }
 
+    /**
+     * Returns the minimum `Fraction` in the collection.
+     *
+     * Compares the 64-bit double values of the fractions and returns the one with the lowest value.
+     * @return Fraction - the minimum `Fraction` object
+     */
     Fraction getMin()
     {
         Fraction ans(fractions[0].getNum(), fractions[0].getDenom());
@@ -313,6 +483,13 @@ public:
         return ans;
     }
 
+    /**
+     * Adds all `Fraction` objects in the specified range. Assumes valid index input.
+     *
+     * @param start The starting index of the range
+     * @param end The ending index of the range
+     * @return Fraction - the result of the addition of all `Fraction` objects in the range
+     */
     Fraction add(int start, int end)
     {
         Fraction ans(fractions[start].getNum(), fractions[start].getDenom());
@@ -325,6 +502,13 @@ public:
         return ans;
     }
 
+    /**
+     * Multiplies all `Fraction` objects in the specified range. Assumes valid index input.
+     *
+     * @param start The starting index of the range
+     * @param end The ending index of the range
+     * @return Fraction - the result of the multiplication of all `Fraction` objects in the range
+     */
     Fraction mul(int start, int end)
     {
         Fraction ans(fractions[start].getNum(), fractions[start].getDenom());
@@ -337,6 +521,13 @@ public:
         return ans;
     }
 
+    /**
+     * Subtracts the `Fraction` at pos2 from the `Fraction` at pos1.
+     *
+     * @param pos1 The position of the first `Fraction`
+     * @param pos2 The position of the second `Fraction`
+     * @return Fraction - the result of the subtraction
+     */
     Fraction sub(int pos1, int pos2)
     {
         Fraction ans;
@@ -344,6 +535,13 @@ public:
         return ans.add(fractions[pos1]).sub(fractions[pos2]);
     }
 
+    /**
+     * Divides the `Fraction` at pos1 by the `Fraction` at pos2.
+     *
+     * @param pos1 The position of the first `Fraction`
+     * @param pos2 The position of the second `Fraction`
+     * @return Fraction - the result of the division
+     */
     Fraction div(int pos1, int pos2)
     {
         Fraction ans(1, 1);
@@ -351,6 +549,9 @@ public:
         return ans.mul(fractions[pos1]).div(fractions[pos2]);
     }
 
+    /**
+     * Prints all `Fraction` objects in the collection. Properly formatted to improve readability.
+     */
     void print()
     {
 

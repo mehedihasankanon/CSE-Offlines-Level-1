@@ -4,17 +4,41 @@
 
 using namespace std;
 
+/**
+ * Course class
+ * Member variables:
+ * - `name`: string - the name of the course
+ * - `creditHour`: float - the credit hour of the course
+ *
+ * Member functions:
+ * - `getName`: returns the name of the course
+ * - `getCreditHour`: returns the credit hour of the course
+ * - `setName`: sets the name of the course
+ * - `setCreditHour`: sets the credit hour of the course
+ * - `display`: prints the course details in a readable format
+ */
 class Course
 {
     string name;
     float creditHour;
 
 public:
+    /**
+     * Default constructor
+     * Initializes name to an empty string and creditHour to 0.0
+     */
     Course()
     {
         name = "";
         creditHour = 0.0;
     }
+
+    /**
+     * Parameterized constructor
+     * Initializes name and creditHour to the given values
+     * @param name The name of the course
+     * @param creditHour The credit hour of the course
+     */
     Course(string name, float creditHour)
     {
         this->name = name;
@@ -27,12 +51,42 @@ public:
     void setName(string name) { this->name = name; }
     void setCreditHour(float creditHour) { this->creditHour = creditHour; }
 
+    /**
+     * Displays the course details in a formatted output
+     * Format: "Course Name: [name], Credit Hour: [creditHour]"
+     */
     void display()
     {
         cout << "Course Name: " << name << ", Credit Hour: " << creditHour;
     }
 };
 
+/**
+ * `Student` class
+ * Members:
+ * - `name`: string - the name of the student
+ * - `id`: int - the ID of the student
+ * - `courses`: Course* - dynamic array of Course objects
+ * - `totalCourses`: int - current number of courses taken by the student
+ * - `maxCourses`: int - maximum number of courses the student can take
+ * - `gradePoints`: float* - dynamic array of grade points corresponding to each course
+ *
+ * Member functions:
+ * - `setName`: sets the name of the student
+ * - `setId`: sets the ID of the student
+ * - `setInfo`: sets both name and ID of the student
+ * - `addCourse`: adds a course to the student's course list
+ * - `setGradePoint`: sets the grade point for a specific course or multiple courses
+ * - `getName`: returns the name of the student
+ * - `getCGPA`: calculates and returns the CGPA of the student
+ * - `getGradePoint`: returns the grade point for a specific course
+ * - `getTotalCourses`: returns the total number of courses taken by the student
+ * - `getTotalCreditHours`: calculates and returns the total credit hours earned by the student
+ * - `getMostFavoriteCourse`: returns the course with the highest grade point
+ * - `getLeastFavoriteCourse`: returns the course with the lowest grade point
+ * - `getFailedCourses`: returns an array of courses in which the student has failed (grade point < 2.0)
+ * - `display`: prints the student's details including courses and CGPA
+ */
 class Student
 {
     string name;
@@ -43,6 +97,16 @@ class Student
     float *gradePoints;
 
 public:
+    /**
+     * Default constructor
+     * Initializes all member variables to default values
+     * - name: empty string
+     * - id: 0
+     * - totalCourses: 0
+     * - maxCourses: 0
+     * - courses: nullptr
+     * - gradePoints: nullptr
+     */
     Student()
     {
         name = "";
@@ -50,6 +114,15 @@ public:
         courses = nullptr;
         gradePoints = nullptr;
     }
+
+    /**
+     * Parameterized constructor
+     * Creates a student with specified name, id, and maximum course capacity
+     * Allocates dynamic memory for courses and gradePoints arrays
+     * @param name The name of the student
+     * @param id The ID of the student
+     * @param maxCourses The maximum number of courses this student can take
+     */
     Student(string name, int id, int maxCourses)
     {
         this->name = name;
@@ -60,6 +133,13 @@ public:
         courses = new Course[maxCourses];
         gradePoints = new float[maxCourses];
     }
+
+    /**
+     * Copy constructor
+     * Creates a deep copy of another Student object
+     * Allocates new memory and copies all data from the source student
+     * @param st The Student object to copy from
+     */
     Student(const Student &st)
     {
         name = st.name;
@@ -76,6 +156,12 @@ public:
             courses[i].setCreditHour(st.courses[i].getCreditHour());
         }
     }
+
+    /**
+     * Destructor
+     * Deallocates dynamically allocated memory for courses and gradePoints arrays
+     * Prevents memory leaks
+     */
     ~Student()
     {
         delete[] courses;
@@ -90,6 +176,11 @@ public:
         setId(id);
     }
 
+    /**
+     * Adds a course to the student's course list
+     * Validates if the maximum course limit is reached before adding
+     * @param c The Course object to add
+     */
     void addCourse(Course c)
     {
         if (totalCourses == maxCourses)
@@ -102,6 +193,13 @@ public:
         gradePoints[totalCourses] = 0.0;
         totalCourses++;
     }
+
+    /**
+     * Adds a course to the student's course list with a specified grade point
+     * Validates grade point range (0.0 to 4.0) and course capacity
+     * @param c The Course object to add
+     * @param gradePoint The grade point for this course (must be between 0.0 and 4.0)
+     */
     void addCourse(Course c, float gradePoint)
     {
         if (totalCourses == maxCourses)
@@ -162,7 +260,8 @@ public:
         // CGPA == SUM(grade * cr. hr) / SUM(cr. hr)
 
         float CG = 0, TC = 0;
-        if(totalCourses == 0) return 0.0;
+        if (totalCourses == 0)
+            return 0.0;
 
         for (int i = 0; i < totalCourses; i++)
         {
@@ -172,6 +271,7 @@ public:
 
         return CG / TC;
     }
+
     float getGradePoint(Course c)
     {
         for (int i = 0; i < totalCourses; i++)
@@ -191,6 +291,11 @@ public:
         }
         return TC;
     }
+
+    /**
+     * Returns the course with the highest grade point (most favorite)
+     * @return Course A copy of the course with the highest grade point
+     */
     Course getMostFavoriteCourse()
     {
         int mx = 0;
@@ -200,6 +305,11 @@ public:
         }
         return Course(courses[mx]);
     }
+
+    /**
+     * Returns the course with the lowest grade point (least favorite)
+     * @return Course A copy of the course with the lowest grade point
+     */
     Course getLeastFavoriteCourse()
     {
         int mn = 0;
@@ -209,6 +319,14 @@ public:
         }
         return Course(courses[mn]);
     }
+    /**
+     * Returns an array of courses in which the student has failed (grade < 2.0)
+     * Dynamically allocates memory for the failed courses array
+     * @param count Reference parameter that will store the number of failed courses
+     * @return Course* Pointer to dynamically allocated array of failed courses,
+     *                 or nullptr if no courses failed
+     * @note Caller is responsible for deleting the returned array to prevent memory leaks
+     */
     Course *getFailedCourses(int &count)
     {
         int failed[totalCourses] = {0}, cnt = 0;
@@ -241,6 +359,11 @@ public:
         return failedCourses;
     }
 
+    /**
+     * Displays comprehensive student information in a formatted output
+     * Shows student name, ID, all courses with grades, CGPA, total credit hours,
+     * most and least favorite courses
+     */
     void display()
     {
         cout << "==================================" << endl;
@@ -258,9 +381,19 @@ public:
     }
 };
 
+/**
+ * Global array to store pointers to Student objects
+ * Used for managing multiple students in the academic system
+ */
 Student *students[100];
 int totalStudents = 0;
 
+/**
+ * Finds and returns the student with the highest CGPA
+ * Uses floating-point comparison with epsilon for precision
+ * @return Student A copy of the student with the highest CGPA,
+ *                or default Student object if no students exist
+ */
 Student getTopper()
 {
     if (totalStudents == 0)
@@ -282,6 +415,12 @@ Student getTopper()
     }
 }
 
+/**
+ * Finds and returns the student with the highest grade in a specific course
+ * @param c The Course object to search for top performer
+ * @return Student A copy of the student with the highest grade in the specified course,
+ *                or default Student object if course not found or no students exist
+ */
 Student getTopper(Course c)
 {
     float gr = -1;
