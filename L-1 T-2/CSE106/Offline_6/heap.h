@@ -8,12 +8,21 @@ using std::min;
 using std::swap;
 using std::vector;
 
+/**
+ * `Heap` class implements a basic max-heap data structure for non-negative integer values.
+ * 
+ */
 class Heap
 {
 private:
     int *heapTree;
     int heapSize, capacity;
 
+    /**
+     * Resizes the heap tree to a new capacity.
+     * 
+     * @param newCapacity The new capacity for the heap tree.
+     */
     void treeResize(int newCapacity)
     {
 
@@ -28,6 +37,11 @@ private:
         capacity = newCapacity;
     }
 
+    /**
+     * Maintains the max-heap property by moving the element at index `idx` up the heap.
+     * 
+     * @param idx The index of the element to heapify up.
+     */
     void heapifyUp(int idx)
     {
         while (idx > 1 && heapTree[idx] > heapTree[idx / 2])
@@ -37,6 +51,11 @@ private:
         }
     }
 
+    /**
+     * Maintains the max-heap property by moving the element at index `idx` down the heap.
+     * 
+     * @param idx The index of the element to heapify down.
+     */
     void heapifyDown(int idx)
     {
         int largest = idx;
@@ -60,6 +79,9 @@ private:
     }
 
 public:
+    /**
+     * Initialize a heap from an array of integers
+     */
     Heap(vector<int> &numbers)
     {
         heapTree = new int[numbers.size() + 5];
@@ -73,6 +95,11 @@ public:
         }
     }
 
+    /**
+     * Initialize an empty heap with a specified size.
+     * 
+     * @param size The initial size of the heap.
+     */
     Heap(size_t size)
     {
         heapTree = new int[size + 5];
@@ -81,11 +108,19 @@ public:
         heapTree[0] = -1;
     }
 
+    /**
+     * Destructor to clean up the heap tree.
+     */
     ~Heap()
     {
         delete[] heapTree;
     }
 
+    /**
+     * Inserts an element into the heap and maintains the max-heap property.
+     * 
+     * @param element The element to be inserted into the heap.
+     */
     void insert(int element)
     {
 
@@ -99,8 +134,14 @@ public:
         heapifyUp(heapSize);
     }
 
+    /**
+     * @return The number of elements in the heap.
+     */
     int size() const { return heapSize; }
 
+    /**
+     * @return The maximum element in the heap. If empty tree, returns -1
+     */
     int getMax() const
     {
         if (heapSize == 0)
@@ -109,6 +150,9 @@ public:
         return heapTree[1];
     }
 
+    /**
+     * Deletes the maximum element from the heap.
+     */
     void deleteKey()
     {
         if (heapSize == 0)
@@ -131,6 +175,10 @@ public:
     }
 };
 
+/**
+ * This function uses the `Heap` class to sort the numbers in ascending order.
+ * @param numbers The vector of integers to be sorted.
+ */
 void heapsort(vector<int> &numbers)
 {
 
